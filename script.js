@@ -101,5 +101,5 @@ function computerVal(val) {
     document.querySelector("#msg-container").appendChild(compChoose);
     setTimeout(() => document.querySelector("#comChoose").remove(), 1000)
 }
-h
+
 // <p id="msg">Pick Your Move</p><br><br><br></br>
