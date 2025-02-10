@@ -13,7 +13,7 @@ let generateCompValue = () => {
     const val = [rock, paper, scissors];
     const randomidx = Math.floor(Math.random() * 3);
     return val[randomidx];
-} 
+}
 
 const draw = () => {
     msg.innerText = "It Was draw";
@@ -21,57 +21,85 @@ const draw = () => {
 }
 
 let playGame = (userValue) => {
-    console.log("User Value : " , userValue);
+    console.log("User Value : ", userValue);
     //computer value
     let compValue = generateCompValue().id;
     console.log("Computer Value :", compValue);
 
     //conditions
-    if(userValue === compValue){
-        draw();   
+    if (userValue === compValue) {
+        draw();
     }
-    else{
-       if(userValue === "rock" && compValue === "paper"){
+    else {
+        if (userValue === "rock" && compValue === "paper") {
             msg.innerText = "You Lost. Rock loses to paper";
             msg.style.backgroundColor = "red";
             computerCount++;
-       }
-       else if(userValue === "rock" && compValue === "scissors"){
+        }
+        else if (userValue === "rock" && compValue === "scissors") {
             msg.innerText = "You Won! Rock beats scissors";
             msg.style.backgroundColor = "rgb(16, 165, 41)";
             userCount++;
-       }
-       else if(userValue === "paper" && compValue === "rock"){
+        }
+        else if (userValue === "paper" && compValue === "rock") {
             msg.innerText = "You Won! Paper beats rock";
             msg.style.backgroundColor = "rgb(16, 165, 41)";
             userCount++;
-       }
-       else if(userValue === "paper" && compValue === "scissors"){
+        }
+        else if (userValue === "paper" && compValue === "scissors") {
             msg.innerText = "You Lost. Paper loses to scissors";
             msg.style.backgroundColor = "red";
             computerCount++;
-       }
-       else if(userValue === "scissors" && compValue === "rock"){
+        }
+        else if (userValue === "scissors" && compValue === "rock") {
             msg.innerText = "You Lost. Scissors loses to rock";
             msg.style.backgroundColor = "red";
             computerCount++;
-       }
-       else if(userValue === "scissors" && compValue === "paper"){
+        }
+        else if (userValue === "scissors" && compValue === "paper") {
             msg.innerText = "You Won! Scissors beat paper";
             msg.style.backgroundColor = "rgb(16, 165, 41)";
             userCount++;
-       }   
+        }
     }
     userScore.innerText = `${userCount}`;
     compScore.innerText = `${computerCount}`;
 }
 
-userChoice.forEach((choice)=>{
+userChoice.forEach((choice) => {
     choice.addEventListener("click", () => {
         let userAction = choice.getAttribute("id");
         //start game now
-        playGame(userAction);  
+        playGame(userAction);
+        let compValue = generateCompValue().id;
+        computerVal(compValue);
     })
 })
 
 
+
+// if (!document.getElementById("restartBtn")) {
+//     const restartBtn = document.createElement("input");
+//     restartBtn.type = "submit";
+//     restartBtn.value = "Restart";
+//     restartBtn.id = "restartBtn";
+//     restartBtn.classList.add("restart-button");
+//     restartBtn.addEventListener("click", function (e) {
+//         e.preventDefault();
+//         location.reload(); // Refresh the page on click
+//     });
+//     document.querySelector("form").appendChild(restartBtn);
+// }
+
+
+function computerVal(val) {
+    const compChoose = document.createElement("p");
+    compChoose.setAttribute("id", "comChoose");
+    compChoose.innerHTML = `Computer choosed : ${val}`;
+
+    // Append to the message container
+    document.querySelector("#msg-container").appendChild(compChoose);
+    setTimeout(() => document.querySelector("#comChoose").remove(), 1000)
+}
+h
+// <p id="msg">Pick Your Move</p><br><br><br></br>
